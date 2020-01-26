@@ -14,6 +14,7 @@ class ChoiseAppViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var emptyTokenView: EmptyTokenView!
+    @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
     
     // MARK: - internal
     internal var router: Router?
@@ -44,12 +45,19 @@ class ChoiseAppViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        //MARK: - Tap: Set token
         emptyTokenView.setTokenButton.rx
             .tap
             .subscribe(onNext: { [weak self] in
                 self?.router?.setToken()
             })
             .disposed(by: disposeBag)
+        
+        //MARK: - Tap: Settings
+        settingsBarButtonItem.rx.tap
+            .bind { [weak self] in
+                self?.router?.goSettings()
+            }.disposed(by: disposeBag)
         
         self.collectionView.register(UINib(nibName: "AppsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         bindViewModel()
@@ -66,12 +74,6 @@ class ChoiseAppViewController: UIViewController {
         collectionView.isHidden = empty
         emptyTokenView.isHidden = !empty
     }
-    
-    //MARK: - IBAction
-    @IBAction func settingsNavigationItemTap(_ sender: UINavigationItem) {
-        router?.goSettings()
-    }
-    
 }
 
 extension ChoiseAppViewController {

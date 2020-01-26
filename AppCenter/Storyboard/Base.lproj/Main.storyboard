@@ -46,15 +46,12 @@
                         <viewLayoutGuide key="safeArea" id="kYB-ax-q7W"/>
                     </view>
                     <navigationItem key="navigationItem" id="qBl-me-3Fu">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gear" catalog="system" id="1iJ-iH-dlK">
-                            <connections>
-                                <action selector="settingsNavigationItemTap:" destination="jH0-aY-GwE" id="Qzs-yO-wBv"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gear" catalog="system" id="1iJ-iH-dlK"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="6hP-Ee-zGJ" id="p7M-yA-8Vb"/>
                         <outlet property="emptyTokenView" destination="DMX-nG-QkN" id="QtD-7b-Qi4"/>
+                        <outlet property="settingsBarButtonItem" destination="1iJ-iH-dlK" id="SqB-fe-2h5"/>
                         <segue destination="zbR-vp-sfc" kind="show" id="k9L-NF-gr3"/>
                     </connections>
                 </viewController>

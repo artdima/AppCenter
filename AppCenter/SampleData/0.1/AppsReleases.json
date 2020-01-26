@@ -1,0 +1,44 @@
+[
+  {
+    "origin": "appcenter",
+    "id": 176,
+    "short_version": "3.4.3",
+    "version": "824",
+    "uploaded_at": "2019-10-24T14:46:44.000Z",
+    "enabled": true,
+    "destinations": [
+      {
+        "id": "b5fd13cb-8dfe-4861-a34f-51c922324501",
+        "name": "All-users-of-Example-2.0-KB-QA",
+        "destination_type": "group"
+      }
+    ],
+    "distribution_groups": [
+      {
+        "id": "b5fd13cb-8dfe-4861-a34f-51c922324501",
+        "name": "All-users-of-Example-2.0-KB-QA"
+      }
+    ]
+  },
+  {
+    "origin": "appcenter",
+    "id": 177,
+    "short_version": "3.4.3",
+    "version": "825",
+    "uploaded_at": "2019-10-24T14:46:44.000Z",
+    "enabled": true,
+    "destinations": [
+      {
+        "id": "b5fd13cb-8dfe-4861-a34f-51c922324501",
+        "name": "All-users-of-Example-2.0-KB-QA",
+        "destination_type": "group"
+      }
+    ],
+    "distribution_groups": [
+      {
+        "id": "b5fd13cb-8dfe-4861-a34f-51c922324501",
+        "name": "All-users-of-Example-2.0-KB-QA"
+      }
+    ]
+  }
+]

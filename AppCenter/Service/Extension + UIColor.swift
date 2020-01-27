@@ -29,4 +29,20 @@ extension UIColor {
 
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: alpha)
     }
+    
+    @nonobjc class var deepSkyBlue: UIColor {
+        return UIColor(red: 0.0, green: 131.0 / 255.0, blue: 242.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var lightBlueGrey: UIColor {
+       return UIColor(red: 199.0 / 255.0, green: 199.0 / 255.0, blue: 204.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var deepSkyBlueTapped: UIColor {
+      return UIColor(red: 0.0, green: 112.0 / 255.0, blue: 209.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var whiteTapped: UIColor {
+      return UIColor(red: 245.0 / 255.0, green: 246.0 / 255.0, blue: 246.0 / 255.0, alpha: 1.0)
+    }
 }

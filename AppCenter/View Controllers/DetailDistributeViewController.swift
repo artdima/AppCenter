@@ -14,7 +14,7 @@ class DetailDistributeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.registerNibForCell(DetailTableViewCell.self)
-            tableView.rowHeight = 470
+            tableView.rowHeight = 490
             tableView.separatorStyle = .none
         }
     }

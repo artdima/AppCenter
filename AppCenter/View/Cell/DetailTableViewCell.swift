@@ -21,6 +21,11 @@ class DetailTableViewCell: UITableViewCell {
     @IBOutlet weak var MD5FingerprintLabel: UILabel!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var buttonInstall: MainButton! {
+        didSet {
+            self.buttonInstall.setupButton(color: .blue, title: "Download")
+        }
+    }
     
 
     public var appDetail: AppDetail? {

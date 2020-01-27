@@ -204,6 +204,7 @@
             <connections>
                 <outlet property="MD5FingerprintLabel" destination="oxi-JH-3CG" id="WUZ-id-beC"/>
                 <outlet property="buildNumberLabel" destination="A3V-Fn-ui4" id="IaF-3L-zTb"/>
+                <outlet property="buttonInstall" destination="M4I-ZI-BBa" id="HTn-OM-W6g"/>
                 <outlet property="dateLabel" destination="CzS-MS-xDX" id="dO8-VT-Poi"/>
                 <outlet property="destinationsLabel" destination="uN3-YK-fQi" id="vrd-vn-YPS"/>
                 <outlet property="downloadsLabel" destination="OAD-DI-JoX" id="w0R-LY-Iun"/>

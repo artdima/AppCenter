@@ -16,7 +16,7 @@ final class SetTokenViewController: UIViewController {
     
     @IBOutlet weak var backTextFieldView: UIView!
     @IBOutlet weak var tokenTextField: PasswordTextField!
-    @IBOutlet weak var saveTokenButton: UIButton!
+    @IBOutlet weak var saveTokenButton: MainButton!
     @IBOutlet weak var getTokenInAppCenter: UIButton!
     
     // MARK: - internal
@@ -69,14 +69,13 @@ final class SetTokenViewController: UIViewController {
             self.navigationController?.navigationBar.prefersLargeTitles = true
         }
         self.tokenTextField.text = Defaults[\.token] ?? ""
-        self.saveTokenButton.sizeToFit()
     }
     
     private func updateSaveButton() {
         if let token = Defaults[\.token], tokenTextField.text ?? "" == token, !token.isEmpty {
-            self.saveTokenButton.setTitle("Token saved 👍",for: .normal)
+            self.saveTokenButton.setupButton(color: .white, title: "Token saved 👍")
         } else {
-            self.saveTokenButton.setTitle("Save",for: .normal)
+            self.saveTokenButton.setupButton(color: .blue, title: "Save token")
         }
     }
     

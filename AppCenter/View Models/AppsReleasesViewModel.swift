@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-struct AppsReleasesViewModel {
+class AppsReleasesViewModel {
     let provider = MoyaProvider<AppCenter>(plugins: [NetworkLoggerPlugin(verbose: true)])
     let disposeBag = DisposeBag()
     

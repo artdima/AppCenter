@@ -12,7 +12,7 @@ import RxCocoa
 import Moya
 import SwiftyUserDefaults
 
-struct AppsViewModel {
+class AppsViewModel {
     
     private let disposeBag = DisposeBag()
     

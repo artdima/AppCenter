@@ -52,8 +52,13 @@ class DetailDistributeViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        self.viewModel.output.release
-            .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: DetailTableViewCell.self)) { (index, appDetail: AppDetail, cell) in
+        self.viewModel.release
+            .subscribeOn(MainScheduler.instance)
+//            .catchError { [weak self] error -> Observable<[AppDetail]> in
+//                //self?.showError(error as? ErrorResult) //TODO: showError
+//                return Observable.just(nil)
+//            }
+            .bind(to: self.tableView.rx.items(cellIdentifier: cellIdentifier, cellType: DetailTableViewCell.self)) { (index, appDetail: AppDetail, cell) in
                 cell.appDetail = appDetail
         }.disposed(by: disposeBag)
     }

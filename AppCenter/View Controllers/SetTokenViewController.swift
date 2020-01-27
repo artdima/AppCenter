@@ -53,6 +53,11 @@ final class SetTokenViewController: UIViewController {
                 guard let url = URL(string: "https://appcenter.ms/settings/apitokens") else { return }
                 UIApplication.shared.open(url, options: [:], completionHandler: nil) //TODO: Change to WKWebView
             }.disposed(by: disposeBag)
+        
+        //Change: tokenTextField
+        tokenTextField.rx.text.bind{ [weak self] _ in
+            self?.updateSaveButton()
+        }.disposed(by: disposeBag)
     }
     
     private func setupUI() {
@@ -68,10 +73,11 @@ final class SetTokenViewController: UIViewController {
     }
     
     private func updateSaveButton() {
-        if let token = Defaults[\.token], !token.isEmpty {
+        if let token = Defaults[\.token], tokenTextField.text ?? "" == token, !token.isEmpty {
             self.saveTokenButton.setTitle("Token saved 👍",for: .normal)
         } else {
             self.saveTokenButton.setTitle("Save",for: .normal)
         }
     }
+    
 }

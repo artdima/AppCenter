@@ -36,14 +36,24 @@ class SettingsTableViewController: UITableViewController {
         
         setupUI()
         
+        //Event: Set token
         UserDefaults.standard.rx
-        .observe(String.self, "token")
-        .subscribe(onNext: { [weak self] (value) in
-            guard let strongSelf = self, let isEmpty = value?.isEmpty else { return }
-            let set = isEmpty ? "" : "    •••••••"
-            strongSelf.titleToken.text = "API token \(set)"
-        })
-        .disposed(by: disposeBag)
+            .observe(String.self, "token")
+            .subscribe(onNext: { [weak self] (value) in
+                guard let strongSelf = self, let isEmpty = value?.isEmpty else { return }
+                let set = isEmpty ? "" : "    •••••••"
+                strongSelf.titleToken.text = "API token \(set)"
+            })
+            .disposed(by: disposeBag)
+        
+        //Event: Select row
+        tableView.rx.itemSelected
+            .bind { [weak self] indexPath in
+                if indexPath.section == 0, let strongSelf = self {
+                    strongSelf.tableView.deselectRow(at: indexPath, animated: true)
+                    strongSelf.router?.setToken()
+                }
+            }.disposed(by: disposeBag)
     }
     
     private func setupUI() {
@@ -55,14 +65,5 @@ class SettingsTableViewController: UITableViewController {
         self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height / 2
         self.avatarImage.layer.borderColor = UIColor.white.cgColor
         self.avatarImage.layer.borderWidth = 5
-    }
-}
-
-extension SettingsTableViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            tableView.deselectRow(at: indexPath, animated: true)
-            router?.setToken()
-        }
     }
 }

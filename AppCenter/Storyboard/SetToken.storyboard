@@ -64,9 +64,6 @@
                                             <constraint firstAttribute="height" constant="21" id="VR8-Sq-OeQ"/>
                                         </constraints>
                                         <state key="normal" title="Get one"/>
-                                        <connections>
-                                            <action selector="getTokenInAppCenter:" destination="xpU-co-Jrk" eventType="touchUpInside" id="cYm-q1-HyM"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -77,9 +74,6 @@
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="18" minY="0.0" maxX="18" maxY="0.0"/>
                                 <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveTokenTap:" destination="xpU-co-Jrk" eventType="touchUpInside" id="lpJ-RI-eHh"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -99,6 +93,7 @@
                     <navigationItem key="navigationItem" id="8wB-HU-nhS"/>
                     <connections>
                         <outlet property="backTextFieldView" destination="OfB-1i-KOd" id="fgj-I0-y9I"/>
+                        <outlet property="getTokenInAppCenter" destination="pnU-JL-lEJ" id="IiB-BY-MqW"/>
                         <outlet property="saveTokenButton" destination="EGu-7o-krc" id="oPM-iY-zTt"/>
                         <outlet property="tokenTextField" destination="lOU-bE-BxO" id="ahp-0E-rLq"/>
                     </connections>

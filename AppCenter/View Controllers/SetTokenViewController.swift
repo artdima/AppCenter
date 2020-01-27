@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import PasswordTextField
 import SwiftyUserDefaults
 
@@ -15,9 +17,12 @@ final class SetTokenViewController: UIViewController {
     @IBOutlet weak var backTextFieldView: UIView!
     @IBOutlet weak var tokenTextField: PasswordTextField!
     @IBOutlet weak var saveTokenButton: UIButton!
+    @IBOutlet weak var getTokenInAppCenter: UIButton!
     
     // MARK: - internal
     internal var router: Router?
+    
+    let disposeBag = DisposeBag()
     
     static func Create() -> UIViewController {
         let storyboard = UIStoryboard(name: "SetToken", bundle: nil)
@@ -33,6 +38,21 @@ final class SetTokenViewController: UIViewController {
         
         setupUI()
         updateSaveButton()
+        
+        //Tap: Save token
+        saveTokenButton.rx.tap
+            .bind { [weak self] in
+                guard let strongSelf = self else { return }
+                Defaults[\.token] = strongSelf.tokenTextField.text
+                strongSelf.updateSaveButton()
+            }.disposed(by: disposeBag)
+        
+        //Tap: Get Token In AppCenter
+        getTokenInAppCenter.rx.tap
+            .bind {
+                guard let url = URL(string: "https://appcenter.ms/settings/apitokens") else { return }
+                UIApplication.shared.open(url, options: [:], completionHandler: nil) //TODO: Change to WKWebView
+            }.disposed(by: disposeBag)
     }
     
     private func setupUI() {
@@ -53,16 +73,5 @@ final class SetTokenViewController: UIViewController {
         } else {
             self.saveTokenButton.setTitle("Save",for: .normal)
         }
-    }
-    
-    //MARK: - IBAction
-    @IBAction func saveTokenTap(_ sender: UIButton) {
-        Defaults[\.token] = tokenTextField.text
-        updateSaveButton()
-    }
-    
-    @IBAction func getTokenInAppCenter(_ sender: UIButton) {
-        guard let url = URL(string: "https://appcenter.ms/settings/apitokens") else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }

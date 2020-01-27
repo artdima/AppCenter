@@ -37,6 +37,7 @@ class ChoiseAppViewController: UIViewController {
         start(empty: true)
         setupUI()
         
+        //Event: Set token
         UserDefaults.standard.rx
             .observe(String.self, "token")
             .subscribe(onNext: { [weak self] (value) in
@@ -45,7 +46,7 @@ class ChoiseAppViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        //MARK: - Tap: Set token
+        //Tap: Set token
         emptyTokenView.setTokenButton.rx
             .tap
             .subscribe(onNext: { [weak self] in
@@ -53,7 +54,7 @@ class ChoiseAppViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        //MARK: - Tap: Settings
+        //Tap: Settings
         settingsBarButtonItem.rx.tap
             .bind { [weak self] in
                 self?.router?.goSettings()

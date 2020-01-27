@@ -11,7 +11,13 @@ import RxSwift
 import RxCocoa
 
 class DetailDistributeViewController: UIViewController {
-     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.registerNibForCell(DetailTableViewCell.self)
+            tableView.rowHeight = 470
+            tableView.separatorStyle = .none
+        }
+    }
     
     // MARK: - internal
     internal var router: Router?
@@ -33,7 +39,6 @@ class DetailDistributeViewController: UIViewController {
         }
         self.router = router
         setupUI()
-        setupTableView()
         bindViewModel()
     }
     
@@ -43,12 +48,6 @@ class DetailDistributeViewController: UIViewController {
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
         }
-    }
-    
-    private func setupTableView() {
-        self.tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.tableView.rowHeight = 470
-        self.tableView.separatorStyle = .none
     }
     
     private func bindViewModel() {

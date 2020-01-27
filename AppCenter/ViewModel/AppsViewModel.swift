@@ -29,7 +29,7 @@ class AppsViewModel {
     
     init() {
         let finalResult = BehaviorRelay<[Apps]>(value: [])
-        let provider = MoyaProvider<AppCenter>(plugins: [NetworkLoggerPlugin(verbose: true)])
+        let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true)])
         
         UserDefaults.standard.rx
             .observe(String.self, "token")

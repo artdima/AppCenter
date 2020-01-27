@@ -1,5 +1,5 @@
 //
-//  AppcenterEndpoint.swift
+//  NetworkService.swift
 //  AppCenter
 //
 //  Created by Medyannik Dima on 25.01.2020.
@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import SwiftyUserDefaults
 
-enum AppCenter {
+enum NetworkService {
     case UserGet
     case OrgsGet
     case AppsGet(token: String)
@@ -18,7 +18,7 @@ enum AppCenter {
     case AppDetail(owner_name: String, app_name: String, release_id: String)
 }
 
-extension AppCenter: TargetType {
+extension NetworkService: TargetType {
     var baseURL: URL {
         guard let url = URL(string: "https://api.appcenter.ms") else { fatalError("Base url not be configured.") }
         return url

@@ -12,7 +12,11 @@ import RxCocoa
 
 class ChoiseAppViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.registerNibForCell(AppsCollectionViewCell.self)
+        }
+    }
     @IBOutlet weak var emptyTokenView: EmptyTokenView!
     @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
     
@@ -60,7 +64,6 @@ class ChoiseAppViewController: UIViewController {
                 self?.router?.goSettings()
             }.disposed(by: disposeBag)
         
-        self.collectionView.register(UINib(nibName: "AppsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
         bindViewModel()
     }
     

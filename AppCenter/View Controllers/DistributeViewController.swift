@@ -12,7 +12,12 @@ import RxCocoa
 
 class DistributeViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.registerNibForCell(DistributeTableViewCell.self)
+            tableView.rowHeight = 50
+        }
+    }
     
     // MARK: - internal
     internal var router: Router?
@@ -33,7 +38,6 @@ class DistributeViewController: UIViewController {
         }
         
         setupUI()
-        setupTableView()
         bindViewModel()
     }
     
@@ -49,11 +53,6 @@ class DistributeViewController: UIViewController {
        if #available(iOS 11.0, *) {
            self.navigationController?.navigationBar.prefersLargeTitles = true
        }
-    }
-    
-    private func setupTableView() {
-        self.tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.tableView.rowHeight = 50
     }
 }
 

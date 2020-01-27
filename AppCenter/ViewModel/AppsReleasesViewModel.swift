@@ -12,7 +12,7 @@ import RxCocoa
 import Moya
 
 class AppsReleasesViewModel {
-    let provider = MoyaProvider<AppCenter>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     let disposeBag = DisposeBag()
     
     let input: Input

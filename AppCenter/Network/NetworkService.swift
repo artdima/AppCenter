@@ -11,7 +11,7 @@ import Moya
 import SwiftyUserDefaults
 
 enum NetworkService {
-    static let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    static let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true, cURL: true, responseDataFormatter: JSONResponseDataFormatter)])
     
     case UserGet
     case OrgsGet
@@ -84,4 +84,14 @@ func stubbedResponses(_ fileName: String) -> Data! {
     let bundle = Bundle(for: TestClass.self)
     let path = bundle.path(forResource: fileName, ofType: "json")
     return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
+}
+
+private func JSONResponseDataFormatter(_ data: Data) -> Data {
+    do {
+        let dataAsJSON = try JSONSerialization.jsonObject(with: data)
+        let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
+        return prettyData
+    } catch {
+        return data // fallback to original data if it can't be serialized.
+    }
 }

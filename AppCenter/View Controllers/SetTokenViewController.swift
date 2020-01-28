@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import PasswordTextField
 import SwiftyUserDefaults
+import SafariServices
 
 final class SetTokenViewController: UIViewController {
     
@@ -49,9 +50,8 @@ final class SetTokenViewController: UIViewController {
         
         //Tap: Get Token In AppCenter
         getTokenInAppCenter.rx.tap
-            .bind {
-                guard let url = URL(string: "https://appcenter.ms/settings/apitokens") else { return }
-                UIApplication.shared.open(url, options: [:], completionHandler: nil) //TODO: Change to WKWebView
+            .bind { [weak self] in
+                self?.showSafariPopover("https://appcenter.ms/settings/apitokens")
             }.disposed(by: disposeBag)
         
         //Change: tokenTextField
@@ -77,6 +77,13 @@ final class SetTokenViewController: UIViewController {
         } else {
             self.saveTokenButton.setupButton(color: .blue, title: "Save token")
         }
+    }
+    
+    private func showSafariPopover(_ address: String) {
+        guard let URLFromString = URL(string: address) else { return }
+        let safariVC = SFSafariViewController(url: URLFromString)
+        safariVC.modalPresentationStyle = .popover
+        self.present(safariVC, animated: true, completion: nil)
     }
     
 }

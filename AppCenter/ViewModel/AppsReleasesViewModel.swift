@@ -12,7 +12,6 @@ import RxCocoa
 import Moya
 
 class AppsReleasesViewModel {
-    let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     let disposeBag = DisposeBag()
     
     let input: Input
@@ -29,7 +28,9 @@ class AppsReleasesViewModel {
     init(apps: Apps) {
         let finalResult = BehaviorRelay<[AppsReleases]>(value: [])
         
-        provider.rx.request(.AppsReleases(owner_name: apps.owner.name, app_name: apps.name) ).subscribe {event in
+        NetworkService.provider.rx
+            .request(.AppsReleases(owner_name: apps.owner.name, app_name: apps.name) )
+            .subscribe {event in
             switch event {
             case .success(let response):
                 let rezult: [AppsReleases] = try! JSONDecoder().decode([AppsReleases].self, from: response.data)

@@ -29,14 +29,13 @@ class AppsViewModel {
     
     init() {
         let finalResult = BehaviorRelay<[Apps]>(value: [])
-        let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true)])
         
         UserDefaults.standard.rx
             .observe(String.self, "token")
             .map { $0 ?? ""}
             .filter { !$0.isEmpty }
             .flatMapLatest { token in
-                provider.rx.request(.AppsGet(token: token))
+                NetworkService.provider.rx.request(.AppsGet(token: token))
             }
             .filter(statusCode: 200)
             .subscribe { response in

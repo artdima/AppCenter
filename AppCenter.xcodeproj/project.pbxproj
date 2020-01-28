@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2A5F048A23DF6E5000D9C725 /* Extension + UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F048923DF6E5000D9C725 /* Extension + UITableView.swift */; };
 		2A5F048C23DF706F00D9C725 /* Extension + UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F048B23DF706F00D9C725 /* Extension + UICollectionView.swift */; };
+		2A5F048F23DFFDE400D9C725 /* Extension + PrimitiveSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F048E23DFFDE400D9C725 /* Extension + PrimitiveSequence.swift */; };
 		2A6BC2B823DB8AED0021B68F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BC2B723DB8AED0021B68F /* Router.swift */; };
 		2A6BC2BB23DC66720021B68F /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BC2B923DC66720021B68F /* DetailTableViewCell.swift */; };
 		2A6BC2BC23DC66730021B68F /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BC2BA23DC66720021B68F /* DetailTableViewCell.xib */; };
@@ -56,6 +57,7 @@
 		0F675220181F90EABE704D6D /* Pods-AppCenter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppCenter.debug.xcconfig"; path = "Target Support Files/Pods-AppCenter/Pods-AppCenter.debug.xcconfig"; sourceTree = "<group>"; };
 		2A5F048923DF6E5000D9C725 /* Extension + UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableView.swift"; sourceTree = "<group>"; };
 		2A5F048B23DF706F00D9C725 /* Extension + UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UICollectionView.swift"; sourceTree = "<group>"; };
+		2A5F048E23DFFDE400D9C725 /* Extension + PrimitiveSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + PrimitiveSequence.swift"; sourceTree = "<group>"; };
 		2A6BC2B723DB8AED0021B68F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2A6BC2B923DC66720021B68F /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		2A6BC2BA23DC66720021B68F /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		32C7BFCE2364D09B00DA8928 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2A5F048E23DFFDE400D9C725 /* Extension + PrimitiveSequence.swift */,
 				2A5F048B23DF706F00D9C725 /* Extension + UICollectionView.swift */,
 				2A5F048923DF6E5000D9C725 /* Extension + UITableView.swift */,
 				328090D42399915300AFA7F8 /* Extension + UIColor.swift */,
@@ -456,6 +459,7 @@
 				2CA9D3B3236234E60091819E /* ViewModelProtocol.swift in Sources */,
 				2CDDFD5B2367272C00A94986 /* AppsReleasesViewModel.swift in Sources */,
 				323FE3432362146600BFCD37 /* AppDelegate.swift in Sources */,
+				2A5F048F23DFFDE400D9C725 /* Extension + PrimitiveSequence.swift in Sources */,
 				3208BD3E23DB67D1003606DF /* EmptyTokenView.swift in Sources */,
 				3223B2BF23DC22690054AAC6 /* MainButton.swift in Sources */,
 				2A5F048C23DF706F00D9C725 /* Extension + UICollectionView.swift in Sources */,

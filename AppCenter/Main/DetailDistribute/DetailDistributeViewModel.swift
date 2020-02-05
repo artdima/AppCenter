@@ -1,5 +1,5 @@
 //
-//  AppDetailViewModel.swift
+//  DetailDistributeViewModel.swift
 //  AppCenter
 //
 //  Created by Medyannik Dima on 25.01.2020.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class AppDetailViewModel {
+class DetailDistributeViewModel {
     let disposeBag = DisposeBag()
     var release = BehaviorRelay<[AppDetail]>.init(value: [])
     

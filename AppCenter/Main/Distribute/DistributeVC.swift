@@ -22,13 +22,13 @@ class DistributeViewController: MainVC {
     let disposeBag = DisposeBag()
     var apps: Apps?
     let cellIdentifier = DistributeTableViewCell.cellIdentifier
-    private var viewModel: AppsReleasesViewModel!
+    private var viewModel: DistributeViewModel!
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()        
         if let apps = apps {
-            viewModel = AppsReleasesViewModel(apps: apps)
+            viewModel = DistributeViewModel(apps: apps)
         }
         prepare()
         bindViewModel()

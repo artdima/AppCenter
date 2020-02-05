@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AppsViewController.swift
 //  AppCenter
 //
 //  Created by Medyannik Dima on 25.01.2020.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ChoiseAppViewController: MainVC {
+class AppsViewController: MainVC {
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -78,7 +78,7 @@ class ChoiseAppViewController: MainVC {
     }
 }
 
-extension ChoiseAppViewController {
+extension AppsViewController {
     private func bindViewModel() {
         
         self.viewModel.output.apps

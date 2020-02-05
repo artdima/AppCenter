@@ -24,14 +24,14 @@ class DetailDistributeViewController: MainVC {
     var appsRelease: AppsReleases?
     let cellIdentifier = DetailTableViewCell.cellIdentifier
     
-    private var viewModel: AppDetailViewModel!
+    private var viewModel: DetailDistributeViewModel!
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let appsRelease = appsRelease, let apps = apps {
-            viewModel = AppDetailViewModel(apps: apps, appsRelease: appsRelease)
+            viewModel = DetailDistributeViewModel(apps: apps, appsRelease: appsRelease)
         }
         
         prepare()

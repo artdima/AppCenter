@@ -1,5 +1,5 @@
 //
-//  AppsReleasesViewModel.swift
+//  DistributeViewModel.swift
 //  AppCenter
 //
 //  Created by Dmitriy Medyannik on 25.01.2020.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class AppsReleasesViewModel {
+class DistributeViewModel {
     let disposeBag = DisposeBag()
     
     let input: Input

@@ -33,16 +33,17 @@ class DetailDistributeViewController: MainVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         let router = Router(vc: self)
+        self.router = router
         
         if let appsRelease = appsRelease, let apps = apps {
             viewModel = AppDetailViewModel(apps: apps, appsRelease: appsRelease)
         }
-        self.router = router
-        setupUI()
+        
+        prepare()
         bindViewModel()
     }
     
-    private func setupUI() {
+    private func prepare() {
         guard let appsRelease = appsRelease else { return }
         self.navigationItem.title = "Release \(appsRelease.version)"
     }

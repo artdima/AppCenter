@@ -39,15 +39,27 @@ class ChoiseAppViewController: MainVC {
         let router = Router(vc: self)
         self.router = router
         
-        start(empty: true)
-        setupUI()
-        
+        prepare()
+        subscribe()
+        bindViewModel()
+    }
+    
+    //MARK: - Function
+    private func prepare() {
+        self.navigationItem.title = "My Apps"
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+    }
+    
+    private func subscribe() {
         //Event: Set token
         UserDefaults.standard.rx
             .observe(String.self, "token")
             .subscribe(onNext: { [weak self] (value) in
                 guard let strongSelf = self, let isEmpty = value?.isEmpty else { return }
-                strongSelf.start(empty: isEmpty)
+                strongSelf.collectionView.isHidden = isEmpty
+                strongSelf.emptyTokenView.isHidden = !isEmpty
             })
             .disposed(by: disposeBag)
         
@@ -60,7 +72,8 @@ class ChoiseAppViewController: MainVC {
             .disposed(by: disposeBag)
         
         //Tap: Settings
-        settingsBarButtonItem.rx.tap
+        settingsBarButtonItem.rx
+            .tap
             .bind { [weak self] in
                 self?.router?.goSettings()
             }.disposed(by: disposeBag)
@@ -96,7 +109,8 @@ extension ChoiseAppViewController {
             }
             .disposed(by: disposeBag)
         
-        collectionView.rx.modelSelected(Apps.self)
+        collectionView.rx
+            .modelSelected(Apps.self)
             .subscribe(onNext: { [unowned self] apps in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "DistributeViewController") as! DistributeViewController
                 vc.apps = apps

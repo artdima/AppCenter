@@ -34,8 +34,23 @@ class SettingsTableViewController: UITableViewController {
         let router = Router(vc: self)
         self.router = router
         
-        setupUI()
-        
+        prepare()
+        subscribe()
+    }
+    
+    //MARK: - Function
+    private func prepare() {
+        self.navigationItem.title = "Settings"
+        self.tableView.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height / 2
+        self.avatarImage.layer.borderColor = UIColor.white.cgColor
+        self.avatarImage.layer.borderWidth = 5
+    }
+    
+    private func subscribe() {
         //Event: Set token
         UserDefaults.standard.rx
             .observe(String.self, "token")
@@ -47,23 +62,13 @@ class SettingsTableViewController: UITableViewController {
             .disposed(by: disposeBag)
         
         //Event: Select row
-        tableView.rx.itemSelected
+        tableView.rx
+            .itemSelected
             .bind { [weak self] indexPath in
                 if indexPath.section == 0, let strongSelf = self {
                     strongSelf.tableView.deselectRow(at: indexPath, animated: true)
                     strongSelf.router?.setToken()
                 }
             }.disposed(by: disposeBag)
-    }
-    
-    private func setupUI() {
-        self.navigationItem.title = "Settings"
-        self.tableView.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
-        self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height / 2
-        self.avatarImage.layer.borderColor = UIColor.white.cgColor
-        self.avatarImage.layer.borderWidth = 5
     }
 }

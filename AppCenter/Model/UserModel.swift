@@ -14,7 +14,7 @@ struct User: Decodable {
     let email: String
     let name: String
     let avatarUrl: String?
-    let canChangePassword: Bool
+    let canChangePassword: Bool?
     let createdAt: String
     let origin: String
     

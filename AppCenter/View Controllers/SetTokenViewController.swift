@@ -37,11 +37,27 @@ final class SetTokenViewController: MainVC {
         let router = Router(vc: self)
         self.router = router
         
-        setupUI()
+        prepare()
         updateSaveButton()
-        
+        subscribe()
+    }
+    
+    //MARK: - Functions
+    private func prepare() {
+        self.navigationItem.title = "Set token"
+        self.view.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
+        self.backTextFieldView.layer.cornerRadius = 4
+        self.backTextFieldView.clipsToBounds = false
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        self.tokenTextField.text = Defaults[\.token] ?? ""
+    }
+    
+    private func subscribe() {
         //Tap: Save token
-        saveTokenButton.rx.tap
+        saveTokenButton.rx
+            .tap
             .bind { [weak self] in
                 guard let strongSelf = self else { return }
                 Defaults[\.token] = strongSelf.tokenTextField.text
@@ -49,23 +65,19 @@ final class SetTokenViewController: MainVC {
             }.disposed(by: disposeBag)
         
         //Tap: Get Token In AppCenter
-        getTokenInAppCenter.rx.tap
+        getTokenInAppCenter.rx
+            .tap
             .bind { [weak self] in
                 self?.showSafariPopover("https://appcenter.ms/settings/apitokens")
             }.disposed(by: disposeBag)
         
         //Change: tokenTextField
-        tokenTextField.rx.text.bind{ [weak self] _ in
+        tokenTextField.rx
+            .text
+            .distinctUntilChanged()
+            .bind{ [weak self] _ in
             self?.updateSaveButton()
         }.disposed(by: disposeBag)
-    }
-    
-    private func setupUI() {
-        self.navigationItem.title = "Set token"
-        self.view.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
-        self.backTextFieldView.layer.cornerRadius = 4
-        self.backTextFieldView.clipsToBounds = false
-        self.tokenTextField.text = Defaults[\.token] ?? ""
     }
     
     private func updateSaveButton() {

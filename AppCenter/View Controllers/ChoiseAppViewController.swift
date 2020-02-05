@@ -84,8 +84,6 @@ class ChoiseAppViewController: MainVC {
                 self?.router?.goHelp()
             })
             .disposed(by: disposeBag)
-        
-        bindViewModel()
     }
     
     private func setupUI() {

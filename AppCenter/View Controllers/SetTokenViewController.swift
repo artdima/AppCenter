@@ -13,7 +13,7 @@ import PasswordTextField
 import SwiftyUserDefaults
 import SafariServices
 
-final class SetTokenViewController: UIViewController {
+final class SetTokenViewController: MainVC {
     
     @IBOutlet weak var backTextFieldView: UIView!
     @IBOutlet weak var tokenTextField: PasswordTextField!
@@ -65,9 +65,6 @@ final class SetTokenViewController: UIViewController {
         self.view.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
         self.backTextFieldView.layer.cornerRadius = 4
         self.backTextFieldView.clipsToBounds = false
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
         self.tokenTextField.text = Defaults[\.token] ?? ""
     }
     

@@ -9,10 +9,17 @@
 import UIKit
 
 class HelpListCollectionViewCell: UICollectionViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var separator: UIView! {
+        didSet {
+            separator.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        }
     }
 
+    func bind(_ type: HelpViewModel.HelpType) {
+        self.title.text = type.rawValue
+        self.icon.image = type.image
+    }
 }

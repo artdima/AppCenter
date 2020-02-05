@@ -60,4 +60,10 @@ extension Router {
         let tvc = SettingsTableViewController.Create()
         push(tvc: tvc)
     }
+    
+    func goHelp() {
+        let storyboard = UIStoryboard(name: "Help", bundle: nil)
+        let HelpVC = storyboard.instantiateInitialViewController() as? HelpVC
+        push(vc: HelpVC!)
+    }
 }

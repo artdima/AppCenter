@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class DetailDistributeViewController: UIViewController {
+class DetailDistributeViewController: MainVC {
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.registerNibForCell(DetailTableViewCell.self)
@@ -45,9 +45,6 @@ class DetailDistributeViewController: UIViewController {
     private func setupUI() {
         guard let appsRelease = appsRelease else { return }
         self.navigationItem.title = "Release \(appsRelease.version)"
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
     }
     
     private func bindViewModel() {

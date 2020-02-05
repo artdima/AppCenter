@@ -6,4 +6,16 @@
 //  Copyright © 2020 Medyannik Dima. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class MainVC: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+    }
+
+}

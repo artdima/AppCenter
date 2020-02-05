@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ChoiseAppViewController: UIViewController {
+class ChoiseAppViewController: MainVC {
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -19,6 +19,7 @@ class ChoiseAppViewController: UIViewController {
     }
     @IBOutlet weak var emptyTokenView: EmptyTokenView!
     @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var helpBarButton: UIBarButtonItem!
     
     // MARK: - internal
     internal var router: Router?
@@ -64,14 +65,18 @@ class ChoiseAppViewController: UIViewController {
                 self?.router?.goSettings()
             }.disposed(by: disposeBag)
         
+        helpBarButton.rx
+            .tap
+            .subscribe(onNext: { [weak self] in
+                self?.router?.goHelp()
+            })
+            .disposed(by: disposeBag)
+        
         bindViewModel()
     }
     
     private func setupUI() {
         self.navigationItem.title = "My Apps"
-        if #available(iOS 11.0, *) {
-            self.navigationController?.navigationBar.prefersLargeTitles = true
-        }
     }
     
     private func start(empty: Bool) {

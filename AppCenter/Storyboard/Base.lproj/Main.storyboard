@@ -45,12 +45,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kYB-ax-q7W"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="qBl-me-3Fu">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gear" catalog="system" id="1iJ-iH-dlK"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Settings" image="gear" catalog="system" id="1iJ-iH-dlK"/>
+                            <barButtonItem title="Item" image="info.circle" catalog="system" id="1cL-4h-0iX"/>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="6hP-Ee-zGJ" id="p7M-yA-8Vb"/>
                         <outlet property="emptyTokenView" destination="DMX-nG-QkN" id="QtD-7b-Qi4"/>
+                        <outlet property="helpBarButton" destination="1cL-4h-0iX" id="chC-05-Uc2"/>
                         <outlet property="settingsBarButtonItem" destination="1iJ-iH-dlK" id="SqB-fe-2h5"/>
                         <segue destination="zbR-vp-sfc" kind="show" id="k9L-NF-gr3"/>
                     </connections>
@@ -86,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2g3-9G-wej">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -143,5 +149,6 @@
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="info.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

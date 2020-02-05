@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class DistributeViewController: UIViewController {
+class DistributeViewController: MainVC {
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -50,9 +50,6 @@ class DistributeViewController: UIViewController {
     
     private func setupUI() {
        self.navigationItem.title = "Distribute"
-       if #available(iOS 11.0, *) {
-           self.navigationController?.navigationBar.prefersLargeTitles = true
-       }
     }
 }
 

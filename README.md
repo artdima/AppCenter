@@ -5,4 +5,8 @@ Continuously build, test, release, and monitor apps for every platform. To work 
 ![Screen_1](web/Screen_1.png)
 ![Screen_2](web/Screen_2.png)
 
+## License
+
+Unofficial client for AppCenter.ms is distributed under the MIT license.
+
 

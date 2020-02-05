@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 enum NetworkService {
     static let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true, cURL: true, responseDataFormatter: JSONResponseDataFormatter)])
     
-    case UserGet
+    case UserGet(token: String)
     case OrgsGet
     case AppsGet(token: String)
     case AppsReleases(owner_name: String, app_name: String)
@@ -28,7 +28,7 @@ extension NetworkService: TargetType {
     
     var sampleData: Data {
         switch self {
-        case .UserGet: return stubbedResponses("User")
+        case .UserGet(_): return stubbedResponses("User")
         case .OrgsGet: return stubbedResponses("Orgs")
         case .AppsGet(_): return stubbedResponses("Apps")
         case .AppsReleases(_, _): return stubbedResponses("AppsReleases")
@@ -38,7 +38,7 @@ extension NetworkService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .UserGet: return .get
+        case .UserGet(_): return .get
         case .OrgsGet: return .get
         case .AppsGet(_): return .get
         case .AppsReleases(_, _): return .get
@@ -48,7 +48,7 @@ extension NetworkService: TargetType {
     
     var path: String {
         switch self {
-        case .UserGet: return "/v0.1/user"
+        case .UserGet(_): return "/v0.1/user"
         case .OrgsGet: return "/v0.1/orgs"
         case .AppsGet(_): return "/v0.1/apps"
         case .AppsReleases(let owner_name, let app_name): return "/v0.1/apps/\(owner_name)/\(app_name)/releases"
@@ -58,7 +58,8 @@ extension NetworkService: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .AppsGet(let token): return ["accept": "application/json", "X-API-Token": token]
+        case .UserGet(let token): return ["accept": "application/json", "X-API-Token": token]
+        case .AppsGet(let token): return ["accept": "application/json", "X-API-Token": token] //TODO: Inside default
         default: return ["accept": "application/json", "X-API-Token": Defaults[\.token] ?? ""]
         }
     }

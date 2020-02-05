@@ -37,7 +37,7 @@ class DistributeViewController: UIViewController {
             viewModel = AppsReleasesViewModel(apps: apps)
         }
         
-        setupUI()
+        prepare()
         bindViewModel()
     }
     
@@ -48,7 +48,7 @@ class DistributeViewController: UIViewController {
         }
     }
     
-    private func setupUI() {
+    private func prepare() {
        self.navigationItem.title = "Distribute"
        if #available(iOS 11.0, *) {
            self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -63,7 +63,8 @@ extension DistributeViewController {
                 cell.appRelease = data
             }.disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(AppsReleases.self)
+        tableView.rx
+            .modelSelected(AppsReleases.self)
             .subscribe(onNext: { (release: AppsReleases) in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailDistributeViewController") as! DetailDistributeViewController
                 vc.appsRelease = release

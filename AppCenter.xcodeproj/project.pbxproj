@@ -29,7 +29,7 @@
 		3208BD3E23DB67D1003606DF /* EmptyTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3208BD3D23DB67D1003606DF /* EmptyTokenView.swift */; };
 		32123D52239D6A1500443309 /* DetailDistributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32123D51239D6A1500443309 /* DetailDistributeViewController.swift */; };
 		3223B2BB23DB85410054AAC6 /* SetToken.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3223B2BA23DB85410054AAC6 /* SetToken.storyboard */; };
-		3223B2BD23DB858D0054AAC6 /* SetTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223B2BC23DB858D0054AAC6 /* SetTokenViewController.swift */; };
+		3223B2BD23DB858D0054AAC6 /* SetTokenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223B2BC23DB858D0054AAC6 /* SetTokenVC.swift */; };
 		3223B2BF23DC22690054AAC6 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223B2BE23DC22690054AAC6 /* MainButton.swift */; };
 		322DB51323EAE0DD00F2734C /* HelpListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322DB51123EAE0DD00F2734C /* HelpListCollectionViewCell.swift */; };
 		322DB51423EAE0DD00F2734C /* HelpListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 322DB51223EAE0DD00F2734C /* HelpListCollectionViewCell.xib */; };
@@ -54,7 +54,7 @@
 		3272CE2C23A4F70C00A392D7 /* AppDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272CE2B23A4F70C00A392D7 /* AppDetailViewModel.swift */; };
 		3272CE2E23A4F7C200A392D7 /* AppDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272CE2D23A4F7C200A392D7 /* AppDetailModel.swift */; };
 		328090D52399915300AFA7F8 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328090D42399915300AFA7F8 /* Extension + UIColor.swift */; };
-		328090D7239AD1B600AFA7F8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328090D6239AD1B600AFA7F8 /* SettingsViewController.swift */; };
+		328090D7239AD1B600AFA7F8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328090D6239AD1B600AFA7F8 /* SettingsVC.swift */; };
 		328090E3239C293B00AFA7F8 /* ProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328090E2239C293B00AFA7F8 /* ProgressService.swift */; };
 		328CB06123DC2B1D00DA3BD8 /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CB06023DC2B1D00DA3BD8 /* Extension + Date.swift */; };
 		328CB06323DC2B5B00DA3BD8 /* Extension + DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328CB06223DC2B5B00DA3BD8 /* Extension + DefaultsKeys.swift */; };
@@ -85,7 +85,7 @@
 		3208BD3D23DB67D1003606DF /* EmptyTokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTokenView.swift; sourceTree = "<group>"; };
 		32123D51239D6A1500443309 /* DetailDistributeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDistributeViewController.swift; sourceTree = "<group>"; };
 		3223B2BA23DB85410054AAC6 /* SetToken.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetToken.storyboard; sourceTree = "<group>"; };
-		3223B2BC23DB858D0054AAC6 /* SetTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTokenViewController.swift; sourceTree = "<group>"; };
+		3223B2BC23DB858D0054AAC6 /* SetTokenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTokenVC.swift; sourceTree = "<group>"; };
 		3223B2BE23DC22690054AAC6 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		322DB51123EAE0DD00F2734C /* HelpListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListCollectionViewCell.swift; sourceTree = "<group>"; };
 		322DB51223EAE0DD00F2734C /* HelpListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpListCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		3272CE2B23A4F70C00A392D7 /* AppDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailViewModel.swift; sourceTree = "<group>"; };
 		3272CE2D23A4F7C200A392D7 /* AppDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailModel.swift; sourceTree = "<group>"; };
 		328090D42399915300AFA7F8 /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Extension + UIColor.swift"; path = "AppCenter/Service/Extension + UIColor.swift"; sourceTree = SOURCE_ROOT; };
-		328090D6239AD1B600AFA7F8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		328090D6239AD1B600AFA7F8 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		328090E2239C293B00AFA7F8 /* ProgressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressService.swift; sourceTree = "<group>"; };
 		328CB06023DC2B1D00DA3BD8 /* Extension + Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Extension + Date.swift"; path = "AppCenter/Style/Extension + Date.swift"; sourceTree = SOURCE_ROOT; };
 		328CB06223DC2B5B00DA3BD8 /* Extension + DefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Extension + DefaultsKeys.swift"; path = "AppCenter/Style/Extension + DefaultsKeys.swift"; sourceTree = SOURCE_ROOT; };
@@ -133,16 +133,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A6BC2BD23DD77F20021B68F /* Storyboard */ = {
-			isa = PBXGroup;
-			children = (
-				323FE3482362146600BFCD37 /* Main.storyboard */,
-				2A6BC2BE23DD7D450021B68F /* Settings.storyboard */,
-				3223B2BA23DB85410054AAC6 /* SetToken.storyboard */,
-			);
-			path = Storyboard;
-			sourceTree = "<group>";
-		};
 		2C1CDD2623639BEF00070DD0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,12 +222,11 @@
 				325731A623998DB90006323E /* Service */,
 				323FE3582362207000BFCD37 /* SampleData */,
 				32C7BFCE2364D09B00DA8928 /* Extensions */,
-				2A6BC2BD23DD77F20021B68F /* Storyboard */,
 				32C7BFCD2364D05D00DA8928 /* Misc */,
 				32C7BFD12364D19800DA8928 /* Network */,
 				32C7BFD02364D10400DA8928 /* ViewModel */,
 				2C1CDD2623639BEF00070DD0 /* Model */,
-				32C7BFCF2364D0C600DA8928 /* View Controllers */,
+				32C7BFCF2364D0C600DA8928 /* Main */,
 				3208BD3A23DB6655003606DF /* View */,
 			);
 			path = AppCenter;
@@ -258,6 +247,33 @@
 				328090E2239C293B00AFA7F8 /* ProgressService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		32594A8823EB044500390BE2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				32594A8923EB04AE00390BE2 /* Settings */,
+				32594A8A23EB04C000390BE2 /* SetToken */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		32594A8923EB04AE00390BE2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2A6BC2BE23DD7D450021B68F /* Settings.storyboard */,
+				328090D6239AD1B600AFA7F8 /* SettingsVC.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		32594A8A23EB04C000390BE2 /* SetToken */ = {
+			isa = PBXGroup;
+			children = (
+				3223B2BA23DB85410054AAC6 /* SetToken.storyboard */,
+				3223B2BC23DB858D0054AAC6 /* SetTokenVC.swift */,
+			);
+			path = SetToken;
 			sourceTree = "<group>";
 		};
 		32C7BFCC2364D00000DA8928 /* 0.1 */ = {
@@ -299,18 +315,18 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		32C7BFCF2364D0C600DA8928 /* View Controllers */ = {
+		32C7BFCF2364D0C600DA8928 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				32594A8823EB044500390BE2 /* Settings */,
 				322DB50F23EAE0AE00F2734C /* Help */,
+				323FE3482362146600BFCD37 /* Main.storyboard */,
 				323FE3462362146600BFCD37 /* ChoiseAppViewController.swift */,
 				2CDDFD542367240D00A94986 /* DistributeViewController.swift */,
 				32123D51239D6A1500443309 /* DetailDistributeViewController.swift */,
-				328090D6239AD1B600AFA7F8 /* SettingsViewController.swift */,
-				3223B2BC23DB858D0054AAC6 /* SetTokenViewController.swift */,
 				32594A8223EAE20E00390BE2 /* MainVC.swift */,
 			);
-			path = "View Controllers";
+			path = Main;
 			sourceTree = "<group>";
 		};
 		32C7BFD02364D10400DA8928 /* ViewModel */ = {
@@ -483,7 +499,7 @@
 				2A6BC2B823DB8AED0021B68F /* Router.swift in Sources */,
 				323FE3472362146600BFCD37 /* ChoiseAppViewController.swift in Sources */,
 				32594A8323EAE20E00390BE2 /* MainVC.swift in Sources */,
-				3223B2BD23DB858D0054AAC6 /* SetTokenViewController.swift in Sources */,
+				3223B2BD23DB858D0054AAC6 /* SetTokenVC.swift in Sources */,
 				32537D2F2363615100E255E9 /* SceneDelegate.swift in Sources */,
 				2C1CDD25236396D500070DD0 /* UserModel.swift in Sources */,
 				32123D52239D6A1500443309 /* DetailDistributeViewController.swift in Sources */,
@@ -510,7 +526,7 @@
 				3208BD3E23DB67D1003606DF /* EmptyTokenView.swift in Sources */,
 				3223B2BF23DC22690054AAC6 /* MainButton.swift in Sources */,
 				2A5F048C23DF706F00D9C725 /* Extension + UICollectionView.swift in Sources */,
-				328090D7239AD1B600AFA7F8 /* SettingsViewController.swift in Sources */,
+				328090D7239AD1B600AFA7F8 /* SettingsVC.swift in Sources */,
 				322DB51823EAE14A00F2734C /* HelpViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

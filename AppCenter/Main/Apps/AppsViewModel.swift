@@ -14,22 +14,12 @@ import SwiftyUserDefaults
 
 class AppsViewModel {
     
-    private let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
-    let input: Input
-    let output: Output
-
-    struct Input {
-        
-    }
-
-    struct Output {
-        var apps = BehaviorRelay<[Apps]>(value: [])
-    }
+    //Output
+    var apps = BehaviorRelay<[Apps]>(value: [])
     
     init() {
-        let finalResult = BehaviorRelay<[Apps]>(value: [])
-        
         UserDefaults.standard.rx
             .observe(String.self, "token")
             .map { $0 ?? ""}
@@ -38,14 +28,11 @@ class AppsViewModel {
                 NetworkService.provider.rx.request(.AppsGet(token: token))
             }
             .filter(statusCode: 200)
-            .subscribe { response in
+            .subscribe { [weak self] response in
                 if let data = response.event.element?.data {
                     let rezult: [Apps] = try! JSONDecoder().decode([Apps].self, from: data)
-                    finalResult.accept(rezult)
+                    self?.apps.accept(rezult)
                 }
             }.disposed(by: disposeBag)
-        
-        self.input = Input()
-        self.output = Output(apps: finalResult)
     }
 }

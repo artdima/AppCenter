@@ -121,13 +121,12 @@ extension Router {
             guard let vc = self.viewController as? SetTokenViewController else { return }
             navigationController?.pushViewController(vc, animated: animated)
         case .distribute(let apps):
-            guard let vc = self.viewController as? DistributeViewController else { return }
-            vc.apps = apps
+            guard let vc = self.viewController as? DistributeViewController, let apps = apps else { return }
+            vc.viewModel = DistributeViewModel(apps: apps)
             navigationController?.pushViewController(vc, animated: animated)
         case .detailDistribute(let apps, let appsRelease):
-            guard let vc = self.viewController as? DetailDistributeViewController else { return }
-            vc.apps = apps
-            vc.appsRelease = appsRelease
+            guard let vc = self.viewController as? DetailDistributeViewController, let apps = apps, let appsRelease = appsRelease else { return }
+            vc.viewModel = DetailDistributeViewModel(apps: apps, appsRelease: appsRelease)
             navigationController?.pushViewController(vc, animated: animated)
         }
     }
@@ -140,17 +139,16 @@ extension Router {
             vc.modalTransitionStyle = modalTransitionStyle
             viewController?.present(vc, animated: animated, completion: completion)
         case .distribute(let apps):
-            guard let vc = self.viewController as? DistributeViewController else { return }
+            guard let vc = self.viewController as? DistributeViewController, let apps = apps else { return }
             vc.modalPresentationStyle = modalPresentationStyle
             vc.modalTransitionStyle = modalTransitionStyle
-            vc.apps = apps
+            vc.viewModel = DistributeViewModel(apps: apps)
             viewController?.present(vc, animated: animated, completion: completion)
         case .detailDistribute(let apps, let appsRelease):
-            guard let vc = self.viewController as? DetailDistributeViewController else { return }
+            guard let vc = self.viewController as? DetailDistributeViewController, let apps = apps, let appsRelease = appsRelease else { return }
             vc.modalPresentationStyle = modalPresentationStyle
             vc.modalTransitionStyle = modalTransitionStyle
-            vc.apps = apps
-            vc.appsRelease = appsRelease
+            vc.viewModel = DetailDistributeViewModel(apps: apps, appsRelease: appsRelease)
             viewController?.present(vc, animated: animated, completion: completion)
         }
     }

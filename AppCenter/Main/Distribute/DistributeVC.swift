@@ -19,19 +19,14 @@ class DistributeViewController: MainVC {
         }
     }
     
-    let disposeBag = DisposeBag()
-    var apps: Apps?
     let cellIdentifier = DistributeTableViewCell.cellIdentifier
-    private var viewModel: DistributeViewModel!
+    var viewModel: DistributeViewModel!
     
     //MARK: - Life cycle
     override func viewDidLoad() {
-        super.viewDidLoad()        
-        if let apps = apps {
-            viewModel = DistributeViewModel(apps: apps)
-        }
+        super.viewDidLoad()
         prepare()
-        bindViewModel()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,17 +42,17 @@ class DistributeViewController: MainVC {
 }
 
 extension DistributeViewController {
-    private func bindViewModel() {
-        self.viewModel.output.apps
+    private func bind() {
+        self.viewModel.appsReleases
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: DistributeTableViewCell.self)) { (index, data: AppsReleases, cell) in
                 cell.appRelease = data
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         tableView.rx
             .modelSelected(AppsReleases.self)
             .subscribe(onNext: { [weak self] (release: AppsReleases) in
                 guard let self = self else { return }
-                Router.detailDistribute(apps: self.apps, appsRelease: release).push(from: self.navigationController)
-            }).disposed(by: disposeBag)
+                Router.detailDistribute(apps: self.viewModel?.apps.value, appsRelease: release).push(from: self.navigationController)
+            }).disposed(by: viewModel.disposeBag)
     }
 }

@@ -22,7 +22,6 @@ class AppsViewController: MainVC {
     @IBOutlet weak var helpBarButton: UIBarButtonItem!
     
     let cellIdentifier = AppsCollectionViewCell.cellIdentifier
-    let disposeBag = DisposeBag()
     private let viewModel = AppsViewModel()
     private var widthCell: Int {
         let screenSize: CGRect = UIScreen.main.bounds
@@ -52,7 +51,7 @@ class AppsViewController: MainVC {
                 strongSelf.collectionView.isHidden = isEmpty
                 strongSelf.emptyTokenView.isHidden = !isEmpty
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         //Tap: Set token
         emptyTokenView.setTokenButton.rx
@@ -60,40 +59,41 @@ class AppsViewController: MainVC {
             .subscribe(onNext: { [weak self] in
                 Router.setToken.push(from: self?.navigationController)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         //Tap: Settings
         settingsBarButtonItem.rx
             .tap
             .bind { [weak self] in
                 Router.settings.push(from: self?.navigationController)
-            }.disposed(by: disposeBag)
+            }.disposed(by: self.viewModel.disposeBag)
         
         helpBarButton.rx
             .tap
             .subscribe(onNext: { [weak self] in
                 Router.help.push(from: self?.navigationController)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
     }
 }
 
 extension AppsViewController {
     private func bindViewModel() {
         
-        self.viewModel.output.apps
-            .bind(to: collectionView.rx.items(cellIdentifier: cellIdentifier, cellType: AppsCollectionViewCell.self)) { [weak self] (index, data: Apps, cell) in
+        self.viewModel.apps
+            .bind(to: collectionView.rx
+            .items(cellIdentifier: cellIdentifier, cellType: AppsCollectionViewCell.self)) { [weak self] (index, data: Apps, cell) in
                 guard let strongSelf = self else { return }
                 cell.apps = data
                 cell.widthCell = strongSelf.widthCell
             }
-            .disposed(by: disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
         
         collectionView.rx
             .modelSelected(Apps.self)
             .subscribe(onNext: { [unowned self] apps in
                 Router.distribute(apps: apps).push(from: self.navigationController)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.viewModel.disposeBag)
     }
 }

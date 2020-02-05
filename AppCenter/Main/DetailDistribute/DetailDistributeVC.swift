@@ -19,31 +19,26 @@ class DetailDistributeViewController: MainVC {
         }
     }
     
-    let disposeBag = DisposeBag()
-    var apps: Apps?
-    var appsRelease: AppsReleases?
     let cellIdentifier = DetailTableViewCell.cellIdentifier
-    
-    private var viewModel: DetailDistributeViewModel!
+    var viewModel: DetailDistributeViewModel!
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let appsRelease = appsRelease, let apps = apps {
-            viewModel = DetailDistributeViewModel(apps: apps, appsRelease: appsRelease)
-        }
-        
         prepare()
-        bindViewModel()
+        bind()
     }
     
     private func prepare() {
-        guard let appsRelease = appsRelease else { return }
-        self.navigationItem.title = "Release \(appsRelease.version)"
     }
     
-    private func bindViewModel() {
+    private func bind() {
+        self.viewModel.appsRelease
+            .subscribe(onNext: { [weak self] appsRelease in
+                guard let self = self, let version = appsRelease?.version else { return }
+                self.navigationItem.title = "Release \(version)"
+            }).disposed(by: self.viewModel.disposeBag)
+        
         self.viewModel.release
             .subscribeOn(MainScheduler.instance)
 //            .catchError { [weak self] error -> Observable<[AppDetail]> in
@@ -52,7 +47,7 @@ class DetailDistributeViewController: MainVC {
 //            }
             .bind(to: self.tableView.rx.items(cellIdentifier: cellIdentifier, cellType: DetailTableViewCell.self)) { (index, appDetail: AppDetail, cell) in
                 cell.appDetail = appDetail
-        }.disposed(by: disposeBag)
+        }.disposed(by: self.viewModel.disposeBag)
     }
 
 }

@@ -14,34 +14,23 @@ import Moya
 class DistributeViewModel {
     let disposeBag = DisposeBag()
     
-    let input: Input
-    let output: Output
-
-    struct Input {
-        
-    }
-
-    struct Output {
-        var apps = BehaviorRelay<[AppsReleases]>(value: [])
-    }
+    var appsReleases = BehaviorRelay<[AppsReleases]>(value: [])
+    var apps = BehaviorRelay<Apps?>(value: nil)
     
     init(apps: Apps) {
-        let finalResult = BehaviorRelay<[AppsReleases]>(value: [])
+        self.apps.accept(apps)
         
         NetworkService.provider.rx
             .request(.AppsReleases(owner_name: apps.owner.name, app_name: apps.name) )
-            .subscribe {event in
+            .subscribe {[weak self] event in
             switch event {
             case .success(let response):
                 let rezult: [AppsReleases] = try! JSONDecoder().decode([AppsReleases].self, from: response.data)
-                finalResult.accept(rezult)
+                self?.appsReleases.accept(rezult)
             case .error(let error):
                 print("Unknown error: \(error)")
             }
         }.disposed(by: disposeBag)
-        
-        self.input = Input()
-        self.output = Output(apps: finalResult)
     }
 }
 

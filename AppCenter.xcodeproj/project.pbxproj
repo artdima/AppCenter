@@ -177,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				322DB51023EAE0B800F2734C /* Cells */,
-				3208BD3A23DB6655003606DF /* View */,
 				322DB51923EAE16B00F2734C /* Help.storyboard */,
 				322DB51523EAE12900F2734C /* HelpVC.swift */,
 				322DB51723EAE14A00F2734C /* HelpViewModel.swift */,
@@ -296,6 +295,7 @@
 		32594A9123EB160B00390BE2 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				3208BD3A23DB6655003606DF /* View */,
 				2C9954EE23676CEF00778FC1 /* Cells */,
 				323FE3482362146600BFCD37 /* Main.storyboard */,
 				323FE3462362146600BFCD37 /* AppsVC.swift */,
@@ -364,8 +364,8 @@
 		32C7BFCF2364D0C600DA8928 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				32594A8823EB044500390BE2 /* Settings */,
 				322DB50F23EAE0AE00F2734C /* Help */,
+				32594A8823EB044500390BE2 /* Settings */,
 				32594A9123EB160B00390BE2 /* Apps */,
 				32594A8B23EB0BB700390BE2 /* Distribute */,
 				32594A9023EB0C3400390BE2 /* DetailDistribute */,

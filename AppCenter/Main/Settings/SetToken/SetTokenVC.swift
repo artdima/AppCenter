@@ -20,23 +20,11 @@ final class SetTokenViewController: MainVC {
     @IBOutlet weak var saveTokenButton: MainButton!
     @IBOutlet weak var getTokenInAppCenter: UIButton!
     
-    // MARK: - internal
-    internal var router: Router?
-    
     let disposeBag = DisposeBag()
-    
-    static func Create() -> UIViewController {
-        let storyboard = UIStoryboard(name: "SetToken", bundle: nil)
-        let setTokenViewController = storyboard.instantiateInitialViewController() as? SetTokenViewController
-        return setTokenViewController!
-    }
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let router = Router(vc: self)
-        self.router = router
-        
         prepare()
         updateSaveButton()
         subscribe()

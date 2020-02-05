@@ -19,9 +19,6 @@ class DistributeViewController: MainVC {
         }
     }
     
-    // MARK: - internal
-    internal var router: Router?
-    
     let disposeBag = DisposeBag()
     var apps: Apps?
     let cellIdentifier = DistributeTableViewCell.cellIdentifier
@@ -29,14 +26,10 @@ class DistributeViewController: MainVC {
     
     //MARK: - Life cycle
     override func viewDidLoad() {
-        super.viewDidLoad()
-        let router = Router(vc: self)
-        self.router = router
-        
+        super.viewDidLoad()        
         if let apps = apps {
             viewModel = AppsReleasesViewModel(apps: apps)
         }
-        
         prepare()
         bindViewModel()
     }
@@ -62,11 +55,9 @@ extension DistributeViewController {
         
         tableView.rx
             .modelSelected(AppsReleases.self)
-            .subscribe(onNext: { (release: AppsReleases) in
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailDistributeViewController") as! DetailDistributeViewController
-                vc.appsRelease = release
-                vc.apps = self.apps
-                self.navigationController?.pushViewController(vc, animated: true)
+            .subscribe(onNext: { [weak self] (release: AppsReleases) in
+                guard let self = self else { return }
+                Router.detailDistribute(apps: self.apps, appsRelease: release).push(from: self.navigationController)
             }).disposed(by: disposeBag)
     }
 }

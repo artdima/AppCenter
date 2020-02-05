@@ -17,23 +17,11 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var titleToken: UILabel!
     
-    // MARK: - internal
-    internal var router: Router?
-    
     let disposeBag = DisposeBag()
-    
-    static func Create() -> UITableViewController {
-        let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-        let settingsTableViewController = storyboard.instantiateInitialViewController() as? SettingsTableViewController
-        return settingsTableViewController!
-    }
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let router = Router(vc: self)
-        self.router = router
-        
         prepare()
         subscribe()
     }
@@ -67,7 +55,7 @@ class SettingsTableViewController: UITableViewController {
             .bind { [weak self] indexPath in
                 if indexPath.section == 0, let strongSelf = self {
                     strongSelf.tableView.deselectRow(at: indexPath, animated: true)
-                    strongSelf.router?.setToken()
+                    Router.setToken.push(from: self?.navigationController)
                 }
             }.disposed(by: disposeBag)
     }

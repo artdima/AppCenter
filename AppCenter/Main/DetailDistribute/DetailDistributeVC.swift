@@ -19,9 +19,6 @@ class DetailDistributeViewController: MainVC {
         }
     }
     
-    // MARK: - internal
-    internal var router: Router?
-    
     let disposeBag = DisposeBag()
     var apps: Apps?
     var appsRelease: AppsReleases?
@@ -32,8 +29,6 @@ class DetailDistributeViewController: MainVC {
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let router = Router(vc: self)
-        self.router = router
         
         if let appsRelease = appsRelease, let apps = apps {
             viewModel = AppDetailViewModel(apps: apps, appsRelease: appsRelease)

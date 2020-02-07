@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Reachability
 
 let APP_DELEGATE = UIApplication.shared.delegate as! AppDelegate
 
@@ -14,10 +15,15 @@ let APP_DELEGATE = UIApplication.shared.delegate as! AppDelegate
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var reachability: Reachability?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NotificationService.shared = NotificationService()
         ProgressService.firstSetup()
+        
+        reachability = Reachability()
+        try? reachability?.startNotifier()
+        
         return true
     }
 

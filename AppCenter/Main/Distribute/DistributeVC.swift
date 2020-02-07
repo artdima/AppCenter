@@ -12,6 +12,7 @@ import RxCocoa
 
 class DistributeViewController: MainVC {
 
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.registerNibForCell(DistributeTableViewCell.self)
@@ -19,8 +20,9 @@ class DistributeViewController: MainVC {
         }
     }
     
-    let cellIdentifier = DistributeTableViewCell.cellIdentifier
-    var viewModel: DistributeViewModel!
+    // MARK: - Private properties
+    private let cellIdentifier = DistributeTableViewCell.cellIdentifier
+    private let viewModel: DistributeViewModel!
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -36,6 +38,7 @@ class DistributeViewController: MainVC {
         }
     }
     
+    // MARK: - Private methods
     private func prepare() {
        self.navigationItem.title = "Distribute"
     }

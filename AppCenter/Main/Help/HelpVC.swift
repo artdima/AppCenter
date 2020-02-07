@@ -14,6 +14,7 @@ import SafariServices
 
 class HelpVC: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.registerNibForCell(HelpListCollectionViewCell.self)
@@ -34,7 +35,7 @@ class HelpVC: UIViewController {
         subscribe()
     }
     
-    //MARK: - Functions
+    //MARK: - Private methods
     private func prepare() {
         helpDataSource = generateSectionDataSource()
         collectionView.rx

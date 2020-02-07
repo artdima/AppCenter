@@ -12,6 +12,7 @@ import RxCocoa
 
 class AppsViewController: MainVC {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.registerNibForCell(AppsCollectionViewCell.self)
@@ -21,7 +22,8 @@ class AppsViewController: MainVC {
     @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var helpBarButton: UIBarButtonItem!
     
-    let cellIdentifier = AppsCollectionViewCell.cellIdentifier
+    // MARK: - Private properties
+    private let cellIdentifier = AppsCollectionViewCell.cellIdentifier
     private let viewModel = AppsViewModel()
     private var widthCell: Int {
         let screenSize: CGRect = UIScreen.main.bounds
@@ -37,7 +39,7 @@ class AppsViewController: MainVC {
         bindViewModel()
     }
     
-    //MARK: - Function
+    // MARK: - Private methods
     private func prepare() {
         self.navigationItem.title = "My Apps"
     }

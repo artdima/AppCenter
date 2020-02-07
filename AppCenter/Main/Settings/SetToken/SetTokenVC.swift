@@ -15,12 +15,14 @@ import SafariServices
 
 final class SetTokenViewController: MainVC {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var backTextFieldView: UIView!
     @IBOutlet weak var tokenTextField: PasswordTextField!
     @IBOutlet weak var saveTokenButton: MainButton!
     @IBOutlet weak var getTokenInAppCenter: UIButton!
     
-    let disposeBag = DisposeBag()
+    // MARK: - Private properties
+    private let disposeBag = DisposeBag()
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ final class SetTokenViewController: MainVC {
         subscribe()
     }
     
-    //MARK: - Functions
+    // MARK: - Private methods
     private func prepare() {
         self.navigationItem.title = "Set token"
         self.view.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
@@ -43,7 +45,7 @@ final class SetTokenViewController: MainVC {
     }
     
     private func subscribe() {
-        //Tap: Save token
+        ///Tap: Save token
         saveTokenButton.rx
             .tap
             .bind { [weak self] in
@@ -52,14 +54,14 @@ final class SetTokenViewController: MainVC {
                 strongSelf.updateSaveButton()
             }.disposed(by: disposeBag)
         
-        //Tap: Get Token In AppCenter
+        ///Tap: Get Token In AppCenter
         getTokenInAppCenter.rx
             .tap
             .bind { [weak self] in
                 self?.showSafariPopover("https://appcenter.ms/settings/apitokens")
             }.disposed(by: disposeBag)
         
-        //Change: tokenTextField
+        ///Change: tokenTextField
         tokenTextField.rx
             .text
             .distinctUntilChanged()

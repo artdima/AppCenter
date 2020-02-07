@@ -12,12 +12,14 @@ import RxCocoa
 
 class SettingsTableViewController: UITableViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var titleToken: UILabel!
     
-    let disposeBag = DisposeBag()
+    // MARK: - Private propertie
+    private let disposeBag = DisposeBag()
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -26,7 +28,7 @@ class SettingsTableViewController: UITableViewController {
         subscribe()
     }
     
-    //MARK: - Function
+    // MARK: - Private methods
     private func prepare() {
         self.navigationItem.title = "Settings"
         self.tableView.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
@@ -39,7 +41,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     private func subscribe() {
-        //Event: Set token
+        ///Event: Set token
         UserDefaults.standard.rx
             .observe(String.self, "token")
             .subscribe(onNext: { [weak self] (value) in
@@ -49,7 +51,7 @@ class SettingsTableViewController: UITableViewController {
             })
             .disposed(by: disposeBag)
         
-        //Event: Select row
+        ///Event: Select row
         tableView.rx
             .itemSelected
             .bind { [weak self] indexPath in

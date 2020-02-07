@@ -74,19 +74,19 @@ extension HelpViewModel {
        }
        
        enum ItemModel: Equatable, IdentifiableType {
-           case helpItem(_ name: HelpType)
+            case helpItem(_ name: HelpType)
            
-           typealias Identity = String
+            typealias Identity = String
                   
-                  var identity: Identity {
-                       switch self {
-                       case .helpItem(let type): return "helpItem" + type.rawValue
-                       }
-                   }
+            var identity: Identity {
+               switch self {
+               case .helpItem(let type): return "helpItem" + type.rawValue
+               }
+            }
            
-           static func ==(lhs: ItemModel, rhs: ItemModel) -> Bool {
+            static func ==(lhs: ItemModel, rhs: ItemModel) -> Bool {
                return lhs.identity == rhs.identity
-           }
+            }
        }
        
        func generateSection() -> [SectionModel] {

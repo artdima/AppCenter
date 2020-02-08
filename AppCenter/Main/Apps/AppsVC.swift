@@ -41,7 +41,7 @@ class AppsViewController: MainVC {
     
     // MARK: - Private methods
     private func prepare() {
-        self.navigationItem.title = "My Apps"
+        self.navigationItem.title = viewModel.title
     }
     
     private func subscribe() {
@@ -83,8 +83,7 @@ extension AppsViewController {
     private func bindViewModel() {
         
         self.viewModel.apps
-            .bind(to: collectionView.rx
-            .items(cellIdentifier: cellIdentifier, cellType: AppsCollectionViewCell.self)) { [weak self] (index, data: Apps, cell) in
+            .bind(to: collectionView.rx.items(cellIdentifier: cellIdentifier, cellType: AppsCollectionViewCell.self)) { [weak self] (index, data: Apps, cell) in
                 guard let strongSelf = self else { return }
                 cell.apps = data
                 cell.widthCell = strongSelf.widthCell

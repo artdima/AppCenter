@@ -49,49 +49,49 @@ class HelpViewModel {
 
 extension HelpViewModel {
      enum SectionModel: AnimatableSectionModelType {
-           case section(items: [Item])
+        case section(items: [Item])
            
-           typealias Item = ItemModel
-           typealias Identity = String
-           
-           var items: [Item] {
-               switch self {
-               case .section(let items): return items.map { $0 }
-               }
+        typealias Item = ItemModel
+        typealias Identity = String
+
+        var items: [Item] {
+           switch self {
+           case .section(let items): return items.map { $0 }
            }
-           
-           init(original: SectionModel, items: [Item]) {
-               switch original {
-               case .section: self = .section(items: items)
-               }
-           }
-           
-           var identity: Identity {
-               switch self {
-               case .section: return "section"
-               }
-           }
-       }
-       
-       enum ItemModel: Equatable, IdentifiableType {
-            case helpItem(_ name: HelpType)
-           
-            typealias Identity = String
-                  
-            var identity: Identity {
-               switch self {
-               case .helpItem(let type): return "helpItem" + type.rawValue
-               }
+        }
+        
+        var identity: Identity {
+            switch self {
+            case .section: return "section"
             }
+        }
            
-            static func ==(lhs: ItemModel, rhs: ItemModel) -> Bool {
-               return lhs.identity == rhs.identity
-            }
-       }
+        init(original: SectionModel, items: [Item]) {
+           switch original {
+           case .section: self = .section(items: items)
+           }
+        }
+    }
        
-       func generateSection() -> [SectionModel] {
-           var items: [ItemModel] = []
-           items = HelpType.allItems.map { .helpItem($0) }
-           return [.section(items: items)]
-       }
+    enum ItemModel: Equatable, IdentifiableType {
+        case helpItem(_ name: HelpType)
+       
+        typealias Identity = String
+              
+        var identity: Identity {
+           switch self {
+           case .helpItem(let type): return "helpItem" + type.rawValue
+           }
+        }
+       
+        static func ==(lhs: ItemModel, rhs: ItemModel) -> Bool {
+           return lhs.identity == rhs.identity
+        }
+    }
+
+    func generateSection() -> [SectionModel] {
+       var items: [ItemModel] = []
+       items = HelpType.allItems.map { .helpItem($0) }
+       return [.section(items: items)]
+    }
 }

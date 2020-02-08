@@ -14,6 +14,7 @@ import SwiftyUserDefaults
 
 class AppsViewModel {
     
+    let title = "My Apps"
     let disposeBag = DisposeBag()
     
     //Output

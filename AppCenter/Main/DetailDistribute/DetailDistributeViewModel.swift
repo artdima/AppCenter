@@ -16,10 +16,12 @@ class DetailDistributeViewModel {
     var release = BehaviorRelay<[AppDetail]>.init(value: [])
     var apps = BehaviorRelay<Apps?>.init(value: nil)
     var appsRelease = BehaviorRelay<AppsReleases?>.init(value: nil)
+    var title: String
     
     init(apps: Apps, appsRelease: AppsReleases) {
         self.apps.accept(apps)
         self.appsRelease.accept(appsRelease)
+        self.title = "Release \(appsRelease.version)"
         let idRelease = String(describing: appsRelease.id)
         NetworkService.provider.rx
             .request(.AppDetail(owner_name: apps.owner.name, app_name: apps.name, release_id: idRelease))

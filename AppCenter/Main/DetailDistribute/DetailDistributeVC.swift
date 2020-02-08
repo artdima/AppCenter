@@ -30,15 +30,10 @@ class DetailDistributeViewController: MainVC {
     }
     
     private func prepare() {
+        self.navigationItem.title = viewModel.title
     }
     
     private func bind() {
-        self.viewModel.appsRelease
-            .subscribe(onNext: { [weak self] appsRelease in
-                guard let self = self, let version = appsRelease?.version else { return }
-                self.navigationItem.title = "Release \(version)"
-            }).disposed(by: self.viewModel.disposeBag)
-        
         self.viewModel.release
             .subscribeOn(MainScheduler.instance)
 //            .catchError { [weak self] error -> Observable<[AppDetail]> in

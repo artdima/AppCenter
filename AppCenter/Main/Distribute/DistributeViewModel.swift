@@ -13,13 +13,14 @@ import Moya
 
 class DistributeViewModel {
     let disposeBag = DisposeBag()
+    let title: String
     
     var appsReleases = BehaviorRelay<[AppsReleases]>(value: [])
     var apps = BehaviorRelay<Apps?>(value: nil)
     
     init(apps: Apps) {
         self.apps.accept(apps)
-        
+        self.title = apps.displayName
         NetworkService.provider.rx
             .request(.AppsReleases(owner_name: apps.owner.name, app_name: apps.name) )
             .subscribe {[weak self] event in

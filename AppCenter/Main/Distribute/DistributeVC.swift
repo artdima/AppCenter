@@ -22,7 +22,9 @@ class DistributeViewController: MainVC {
     
     // MARK: - Private properties
     private let cellIdentifier = DistributeTableViewCell.cellIdentifier
-    private let viewModel: DistributeViewModel!
+    
+    // MARK: - Public properties
+    var viewModel: DistributeViewModel!
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -40,7 +42,7 @@ class DistributeViewController: MainVC {
     
     // MARK: - Private methods
     private func prepare() {
-       self.navigationItem.title = "Distribute"
+        self.navigationItem.title = viewModel.title
     }
 }
 

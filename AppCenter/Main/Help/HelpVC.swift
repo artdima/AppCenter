@@ -51,14 +51,10 @@ class HelpVC: UIViewController {
             .disposed(by: viewModel.bag)
         
         collectionView.rx
-            .itemSelected
-            .subscribe(onNext: { indexPath in
-                let item: Item = self.helpDataSource[indexPath]
-                switch item {
-                case .helpItem(let type):
-                    switch type {
-                    default: self.showSafariPopover(type.urlAddress)
-                    }
+            .modelSelected(Item.self)
+            .subscribe(onNext: { (item: Item) in
+                if case .helpItem(let type) = item {
+                    self.showSafariPopover(type.urlAddress)
                 }
         }).disposed(by: viewModel.bag)
     }

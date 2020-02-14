@@ -18,16 +18,34 @@ class AppsViewModel {
     let disposeBag = DisposeBag()
     
     //Output
-    var apps = BehaviorRelay<[Apps]>(value: [])
+    var apps: BehaviorRelay<[Apps]> = BehaviorRelay<[Apps]>(value: [])
+    let loading: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
     
     init() {
-        UserDefaults.standard.rx
+        let setToken = UserDefaults.standard.rx
             .observe(String.self, "token")
             .map { $0 ?? ""}
             .filter { !$0.isEmpty }
+        
+        setToken
+            .map { _ in true }
+            .bind(to: loading)
+            .disposed(by: disposeBag)
+        
+        let resultApp = setToken
             .flatMapLatest { token in
-                NetworkService.provider.rx.request(.AppsGet(token: token))
+                NetworkService.provider.rx
+                    .request(.AppsGet(token: token))
+                    .asObservable()
             }
+            .share(replay: 1)
+            
+        resultApp
+            .map { _ in false }
+            .bind(to: loading)
+            .disposed(by: disposeBag)
+        
+        resultApp
             .filter(statusCode: 200)
             .subscribe { [weak self] response in
                 if let data = response.event.element?.data {

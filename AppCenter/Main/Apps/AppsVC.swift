@@ -21,6 +21,7 @@ class AppsViewController: MainVC {
     @IBOutlet weak var emptyTokenView: EmptyTokenView!
     @IBOutlet weak var settingsBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var helpBarButton: UIBarButtonItem!
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
     // MARK: - Private properties
     private let cellIdentifier = AppsCollectionViewCell.cellIdentifier
@@ -81,6 +82,10 @@ class AppsViewController: MainVC {
 
 extension AppsViewController {
     private func bindViewModel() {
+        
+        self.viewModel.loading
+            .bind(to: loadingView.rx.isAnimating)
+            .disposed(by: self.viewModel.disposeBag)
         
         self.viewModel.apps
             .bind(to: collectionView.rx.items(cellIdentifier: cellIdentifier, cellType: AppsCollectionViewCell.self)) { [weak self] (index, data: Apps, cell) in

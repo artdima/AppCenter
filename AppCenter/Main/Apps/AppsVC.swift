@@ -95,6 +95,14 @@ extension AppsViewController {
             }
             .disposed(by: self.viewModel.disposeBag)
         
+        viewModel.error
+            .subscribe(onNext: { error in
+                if error {
+                    NotificationService.shared.showErrorNotification(title: "Error", subtitle: "Unauthorized")
+                }
+            })
+            .disposed(by: self.viewModel.disposeBag)
+        
         collectionView.rx
             .modelSelected(Apps.self)
             .subscribe(onNext: { [unowned self] apps in

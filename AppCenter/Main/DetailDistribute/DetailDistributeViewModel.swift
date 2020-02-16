@@ -23,19 +23,26 @@ class DetailDistributeViewModel {
         self.appsRelease.accept(appsRelease)
         self.title = "Release \(appsRelease.version)"
         let idRelease = String(describing: appsRelease.id)
+        
         NetworkService.provider.rx
             .request(.AppDetail(owner_name: apps.owner.name, app_name: apps.name, release_id: idRelease))
-            //.catchAndShowErrors()
-            //.map(AppDetail.self)
             .subscribe { [weak self] event in
-            switch event {
-            case .success(let response):
-                let rezult: AppDetail = try! JSONDecoder().decode(AppDetail.self, from: response.data)
-                self?.release.accept([rezult])
-            case .error(let error):
-                print("Unknown error: \(error)")
-            }
-        }.disposed(by: disposeBag)
+                switch event {
+                case .success(let response):
+                    let rezult: AppDetail = try! JSONDecoder().decode(AppDetail.self, from: response.data)
+                    self?.release.accept([rezult])
+                case .error(let error):
+                    print("Unknown error: \(error)")
+                }
+            }.disposed(by: disposeBag)
+        
+//        NetworkService.provider.rx
+//            .request(.AppDetail(owner_name: apps.owner.name, app_name: apps.name, release_id: idRelease))
+//            .map(AppDetail.self)
+//            .do(onError: { print("Unknown error \($0)") })
+//            .map { [$0] }
+//            .bind(to: release)
+//            .disposed(by: disposeBag)
     }
 }
 

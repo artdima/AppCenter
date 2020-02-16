@@ -58,16 +58,16 @@ extension DistributeViewController {
                 cell.appRelease = data
             }.disposed(by: viewModel.disposeBag)
         
-//        tableView.rx
-//            .modelSelected(AppsReleases.self)
-//            .subscribe(onNext: { [weak self] (release: AppsReleases) in
-//                guard let self = self else { return }
-//                Router.detailDistribute(apps: self.viewModel?.apps.value, appsRelease: release).push(from: self.navigationController)
-//            }).disposed(by: viewModel.disposeBag)
-        
         tableView.rx
             .modelSelected(AppsReleases.self)
-            .bind(to: viewModel.didSelect)
-            .disposed(by: viewModel.disposeBag)
+            .subscribe(onNext: { [weak self] (release: AppsReleases) in
+                guard let self = self else { return }
+                Router.detailDistribute(apps: self.viewModel?.apps.value, appsRelease: release).push(from: self.navigationController)
+            }).disposed(by: viewModel.disposeBag)
+        
+//        tableView.rx
+//            .modelSelected(AppsReleases.self)
+//            .bind(to: viewModel.didSelect)
+//            .disposed(by: viewModel.disposeBag)
     }
 }

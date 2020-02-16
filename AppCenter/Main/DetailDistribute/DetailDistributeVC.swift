@@ -42,6 +42,12 @@ class DetailDistributeViewController: MainVC {
 //            }
             .bind(to: self.tableView.rx.items(cellIdentifier: cellIdentifier, cellType: DetailTableViewCell.self)) { (index, appDetail: AppDetail, cell) in
                 cell.appDetail = appDetail
+                cell.buttonInstall.rx.tap
+                    .subscribe(onNext: {
+                        guard let downloadUrl = appDetail.downloadUrl, let url = URL(string: downloadUrl) else { return }
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    })
+                    .disposed(by: self.viewModel.disposeBag)
         }.disposed(by: self.viewModel.disposeBag)
     }
 

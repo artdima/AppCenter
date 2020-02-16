@@ -19,6 +19,7 @@ class DistributeViewController: MainVC {
             tableView.rowHeight = 50
         }
     }
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
     // MARK: - Private properties
     private let cellIdentifier = DistributeTableViewCell.cellIdentifier
@@ -48,6 +49,10 @@ class DistributeViewController: MainVC {
 
 extension DistributeViewController {
     private func bind() {
+        self.viewModel.loading
+            .bind(to: loadingView.rx.isAnimating)
+            .disposed(by: self.viewModel.disposeBag)
+        
         self.viewModel.appsReleases
             .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier, cellType: DistributeTableViewCell.self)) { (index, data: AppsReleases, cell) in
                 cell.appRelease = data

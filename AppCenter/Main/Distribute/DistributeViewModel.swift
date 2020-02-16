@@ -17,19 +17,25 @@ class DistributeViewModel {
     
     var appsReleases = BehaviorRelay<[AppsReleases]>(value: [])
     var apps = BehaviorRelay<Apps?>(value: nil)
+    let loading: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: true)
     
     init(apps: Apps) {
         self.apps.accept(apps)
         self.title = apps.displayName
-        NetworkService.provider.rx
+        
+        let resultAppReleases = NetworkService.provider.rx
             .request(.AppsReleases(owner_name: apps.owner.name, app_name: apps.name) )
-            .subscribe {[weak self] event in
-            switch event {
-            case .success(let response):
-                let rezult: [AppsReleases] = try! JSONDecoder().decode([AppsReleases].self, from: response.data)
+            .asObservable()
+        
+        resultAppReleases
+           .map { _ in false }
+           .bind(to: loading)
+           .disposed(by: disposeBag)
+        
+        resultAppReleases.subscribe {[weak self] response in
+            if let data = response.event.element?.data {
+                let rezult: [AppsReleases] = try! JSONDecoder().decode([AppsReleases].self, from: data)
                 self?.appsReleases.accept(rezult)
-            case .error(let error):
-                print("Unknown error: \(error)")
             }
         }.disposed(by: disposeBag)
     }

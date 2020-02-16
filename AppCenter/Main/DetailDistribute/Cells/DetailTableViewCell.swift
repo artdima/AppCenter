@@ -12,6 +12,7 @@ class DetailTableViewCell: UITableViewCell {
     
     static let cellIdentifier = "DetailTableViewCell"
     
+    // MARK: - IBOutlets
     @IBOutlet weak var destinationsLabel: UILabel!
     @IBOutlet weak var downloadsLabel: UILabel!
     @IBOutlet weak var minimumOsLabel: UILabel!
@@ -27,7 +28,7 @@ class DetailTableViewCell: UITableViewCell {
         }
     }
     
-
+    // MARK: - Public properties
     public var appDetail: AppDetail? {
         didSet {
             guard let appDetail = appDetail else { return }
@@ -44,12 +45,7 @@ class DetailTableViewCell: UITableViewCell {
         }
     }
     
-    //MARK: - IBAction
-    @IBAction func installButtonTap(_ sender: UIButton) {
-        guard let downloadUrl = appDetail?.downloadUrl, let url = URL(string: downloadUrl) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-    
+    // MARK: - Private methods
     private func sizeToMb(size: Int) -> String {
         guard size != 0 else { return "–" }
         let bcf = ByteCountFormatter()

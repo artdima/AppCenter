@@ -20,6 +20,7 @@ class AppsViewModel {
     //Output
     var apps: BehaviorRelay<[Apps]> = BehaviorRelay<[Apps]>(value: [])
     let loading: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
+    let error: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
     
     init() {
         let setToken = UserDefaults.standard.rx
@@ -30,6 +31,11 @@ class AppsViewModel {
         setToken
             .map { _ in true }
             .bind(to: loading)
+            .disposed(by: disposeBag)
+        
+        setToken
+            .map { _ -> [Apps] in return [] }
+            .bind(to: apps)
             .disposed(by: disposeBag)
         
         let resultApp = setToken
@@ -44,6 +50,15 @@ class AppsViewModel {
             .map { _ in false }
             .bind(to: loading)
             .disposed(by: disposeBag)
+        
+        resultApp
+            .map{ result in
+                return result.statusCode == 401
+            }
+            .debug()
+            .bind(to: error)
+            .disposed(by: disposeBag)
+        
         
         resultApp
             .filter(statusCode: 200)

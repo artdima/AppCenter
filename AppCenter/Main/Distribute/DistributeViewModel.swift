@@ -17,6 +17,7 @@ class DistributeViewModel {
     
     var appsReleases = BehaviorRelay<[AppsReleases]>(value: [])
     var apps = BehaviorRelay<Apps?>(value: nil)
+    let didSelect: PublishSubject<AppsReleases> = PublishSubject()
     let loading: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: true)
     
     init(apps: Apps) {

@@ -67,9 +67,9 @@ class AppsViewModel {
         
         
         resultApp
+            .debug()
             .subscribe { [weak self] response in
-                print("dsfsfsdfsdfsdfsdf")
-                if let data = response.event.element?.data {
+                if response.event.element?.statusCode == 200, let data = response.event.element?.data {
                     let rezult: [Apps] = try! JSONDecoder().decode([Apps].self, from: data)
                     self?.apps.onNext(rezult) //accept(rezult)
                 }

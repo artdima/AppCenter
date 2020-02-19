@@ -17,10 +17,10 @@ class AppsViewModel {
     let title = "My Apps"
     let disposeBag = DisposeBag()
     //Input
-    var viewWillAppear: PublishSubject<Void> = PublishSubject()
+    var viewWillAppear: PublishSubject<Bool> = PublishSubject<Bool>()
     
     //Output
-    var apps: BehaviorRelay<[Apps]> = BehaviorRelay<[Apps]>(value: [])
+    var apps: BehaviorSubject<[Apps]> = BehaviorSubject<[Apps]>(value: [])
     let loading: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
     let error: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
     
@@ -30,27 +30,27 @@ class AppsViewModel {
             .map { $0 ?? ""}
             .filter { !$0.isEmpty }
         
-        let refresh = Observable
-            .merge(viewWillAppear.asObserver(),
-                   setToken)
-        
         setToken
-            .map { _ in true }
-            .bind(to: loading)
-            .disposed(by: disposeBag)
-        
-        setToken
+            .debug()
             .map { _ -> [Apps] in return [] }
             .bind(to: apps)
             .disposed(by: disposeBag)
         
-        let resultApp = setToken
+        
+        let refresh = viewWillAppear.withLatestFrom(setToken)
+        
+        refresh
+            .map { _ in true }
+            .bind(to: loading)
+            .disposed(by: disposeBag)
+        
+        let resultApp = refresh
             .flatMapLatest { token in
                 NetworkService.provider.rx
                     .request(.AppsGet(token: token))
                     .asObservable()
             }
-            .share(replay: 1)
+            //.share(replay: 1)
             
         resultApp
             .map { _ in false }
@@ -67,11 +67,11 @@ class AppsViewModel {
         
         
         resultApp
-            .filter(statusCode: 200)
             .subscribe { [weak self] response in
+                print("dsfsfsdfsdfsdfsdf")
                 if let data = response.event.element?.data {
                     let rezult: [Apps] = try! JSONDecoder().decode([Apps].self, from: data)
-                    self?.apps.accept(rezult)
+                    self?.apps.onNext(rezult) //accept(rezult)
                 }
             }.disposed(by: disposeBag)
     }

@@ -16,6 +16,8 @@ class AppsViewModel {
     
     let title = "My Apps"
     let disposeBag = DisposeBag()
+    //Input
+    var viewWillAppear: PublishSubject<Void> = PublishSubject()
     
     //Output
     var apps: BehaviorRelay<[Apps]> = BehaviorRelay<[Apps]>(value: [])
@@ -27,6 +29,10 @@ class AppsViewModel {
             .observe(String.self, "token")
             .map { $0 ?? ""}
             .filter { !$0.isEmpty }
+        
+        let refresh = Observable
+            .merge(viewWillAppear.asObserver(),
+                   setToken)
         
         setToken
             .map { _ in true }

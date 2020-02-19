@@ -12,6 +12,7 @@ target 'AppCenter' do
   pod 'RxDataSources'
   pod 'RxReachability'
   pod 'RxSwiftExt'
+  pod 'RxViewController'
   pod 'SDWebImage'#, '~> 5.0'
   pod 'SwiftMessages', '~> 7.0'
   pod 'SVProgressHUD'

@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxViewController
 
 class AppsViewController: MainVC {
     
@@ -54,6 +55,12 @@ class AppsViewController: MainVC {
                 strongSelf.collectionView.isHidden = isEmpty
                 strongSelf.emptyTokenView.isHidden = !isEmpty
             })
+            .disposed(by: self.viewModel.disposeBag)
+        
+        //viewWillAppear
+        self.rx
+            .viewWillAppear
+            .bind(to: viewModel.viewWillAppear)
             .disposed(by: self.viewModel.disposeBag)
         
         //Tap: Set token

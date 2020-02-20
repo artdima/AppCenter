@@ -17,9 +17,11 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var titleToken: UILabel!
+    @IBOutlet weak var titleBundle: UILabel!
     
     // MARK: - Private propertie
     private let disposeBag = DisposeBag()
+    private let viewModel = SettingsViewModel()
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ class SettingsTableViewController: UITableViewController {
     
     // MARK: - Private methods
     private func prepare() {
-        self.navigationItem.title = "Settings"
+        self.navigationItem.title = viewModel.title
         self.tableView.backgroundColor = UIColor.colorWithHex("0xf0f0f0", alpha: 1)
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -38,6 +40,10 @@ class SettingsTableViewController: UITableViewController {
         self.avatarImage.layer.cornerRadius = self.avatarImage.frame.height / 2
         self.avatarImage.layer.borderColor = UIColor.white.cgColor
         self.avatarImage.layer.borderWidth = 5
+        
+        let releaseVersionNumber = Bundle.main.releaseVersionNumber ?? "-"
+        let buildVersionNumber = Bundle.main.buildVersionNumber ?? "-"
+        self.titleBundle.text = "AppCenter \(releaseVersionNumber) (\(buildVersionNumber))"
     }
     
     private func subscribe() {
@@ -49,7 +55,7 @@ class SettingsTableViewController: UITableViewController {
                 let set = isEmpty ? "" : "    •••••••"
                 strongSelf.titleToken.text = "API token \(set)"
             })
-            .disposed(by: disposeBag)
+            .disposed(by: viewModel.disposeBag)
         
         ///Event: Select row
         tableView.rx
@@ -59,6 +65,6 @@ class SettingsTableViewController: UITableViewController {
                     strongSelf.tableView.deselectRow(at: indexPath, animated: true)
                     Router.setToken.push(from: self?.navigationController)
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
     }
 }

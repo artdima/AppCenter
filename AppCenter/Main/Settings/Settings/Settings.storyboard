@@ -100,6 +100,7 @@
                         <outlet property="avatarImage" destination="ZrU-tV-BCq" id="DEC-kp-5Cx"/>
                         <outlet property="emailLabel" destination="oFu-Ja-fhm" id="mSa-t1-ZN0"/>
                         <outlet property="nameLabel" destination="97C-kW-CJq" id="wr7-wc-Q5x"/>
+                        <outlet property="titleBundle" destination="jhO-NB-xNJ" id="wFE-gC-zc1"/>
                         <outlet property="titleToken" destination="UZb-lb-P1a" id="8yH-zU-VAE"/>
                     </connections>
                 </tableViewController>

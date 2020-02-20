@@ -14,6 +14,7 @@
 		2A6BC2BB23DC66720021B68F /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6BC2B923DC66720021B68F /* DetailTableViewCell.swift */; };
 		2A6BC2BC23DC66730021B68F /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BC2BA23DC66720021B68F /* DetailTableViewCell.xib */; };
 		2A6BC2BF23DD7D450021B68F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6BC2BE23DD7D450021B68F /* Settings.storyboard */; };
+		2A8DF38C23FE472100AB20E8 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DF38B23FE472100AB20E8 /* SettingsViewModel.swift */; };
 		2C1CDD25236396D500070DD0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CDD24236396D500070DD0 /* UserModel.swift */; };
 		2C1CDD29236401FD00070DD0 /* AppsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CDD28236401FD00070DD0 /* AppsModel.swift */; };
 		2C9954F123676D6500778FC1 /* AppsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9954EF23676D6500778FC1 /* AppsCollectionViewCell.swift */; };
@@ -71,6 +72,7 @@
 		2A6BC2B923DC66720021B68F /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		2A6BC2BA23DC66720021B68F /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		2A6BC2BE23DD7D450021B68F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		2A8DF38B23FE472100AB20E8 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2C1CDD24236396D500070DD0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2C1CDD28236401FD00070DD0 /* AppsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsModel.swift; sourceTree = "<group>"; };
 		2C9954EF23676D6500778FC1 /* AppsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				2A6BC2BE23DD7D450021B68F /* Settings.storyboard */,
 				328090D6239AD1B600AFA7F8 /* SettingsVC.swift */,
+				2A8DF38B23FE472100AB20E8 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				2C1CDD25236396D500070DD0 /* UserModel.swift in Sources */,
 				32123D52239D6A1500443309 /* DetailDistributeVC.swift in Sources */,
 				2CDDFD59236726E800A94986 /* AppsReleasesModel.swift in Sources */,
+				2A8DF38C23FE472100AB20E8 /* SettingsViewModel.swift in Sources */,
 				328CB06323DC2B5B00DA3BD8 /* Extension + DefaultsKeys.swift in Sources */,
 				3272CE2C23A4F70C00A392D7 /* DetailDistributeViewModel.swift in Sources */,
 				32573C102365D035004B2A42 /* AppsViewModel.swift in Sources */,
@@ -708,6 +712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8Q6S7RTHBY;
 				INFOPLIST_FILE = AppCenter/Misc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -715,7 +720,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dima.medyannik.AppCenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -729,6 +734,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 8Q6S7RTHBY;
 				INFOPLIST_FILE = AppCenter/Misc/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -736,7 +742,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dima.medyannik.AppCenter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

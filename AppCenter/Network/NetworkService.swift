@@ -11,7 +11,8 @@ import Moya
 import SwiftyUserDefaults
 
 enum NetworkService {
-    static let provider = MoyaProvider<NetworkService>(plugins: [NetworkLoggerPlugin(verbose: true, cURL: true, responseDataFormatter: JSONResponseDataFormatter)])
+    static let provider = MoyaProvider<NetworkService>(stubClosure: MoyaProvider.immediatelyStub)
+    //(plugins: [NetworkLoggerPlugin(verbose: true, cURL: true, responseDataFormatter: JSONResponseDataFormatter)])
     
     case UserGet(token: String)
     case OrgsGet
